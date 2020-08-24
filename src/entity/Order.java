@@ -33,6 +33,12 @@ public class Order implements SuperEntity {
   @OneToMany(mappedBy = "order", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
   private List<OrderDetail> orderDetails;
 
+  public Order(String id, Date date, Customer customer) {
+    this.id = id;
+    this.date = date;
+    this.customer = customer;
+  }
+
   public Order(String id, Date date, Customer customer, List<OrderDetail> orderDetails) {
     this.id = id;
     this.date = date;

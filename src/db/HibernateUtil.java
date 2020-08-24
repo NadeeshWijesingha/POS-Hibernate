@@ -9,6 +9,11 @@ import org.hibernate.boot.model.naming.ImplicitNamingStrategyJpaCompliantImpl;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
+import entity.Customer;
+import entity.Item;
+import entity.Order;
+import entity.OrderDetail;
+
 public class HibernateUtil {
 
   private static final SessionFactory sessionFactory = buildSessionFactory();
@@ -22,6 +27,10 @@ public class HibernateUtil {
         .build();
 
     Metadata metadata = new MetadataSources(standardRegistry)
+        .addAnnotatedClass(Customer.class)
+        .addAnnotatedClass(Item.class)
+        .addAnnotatedClass(Order.class)
+        .addAnnotatedClass(OrderDetail.class)
         .getMetadataBuilder()
         .applyImplicitNamingStrategy(ImplicitNamingStrategyJpaCompliantImpl.INSTANCE)
         .build();
