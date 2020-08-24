@@ -1,3 +1,4 @@
+import db.HibernateUtil;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -12,8 +13,8 @@ public class AppInitializer extends Application {
     public static void main(String[] args) {
         launch(args);
         try {
-            DBConnection.getInstance().getConnection().close();
-        } catch (SQLException e) {
+            HibernateUtil.getSessionFactory().close();
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

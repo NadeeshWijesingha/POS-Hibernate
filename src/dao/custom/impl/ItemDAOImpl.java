@@ -17,8 +17,9 @@ public class ItemDAOImpl implements ItemDAO {
   }
 
   public String getLastItemCode() throws Exception {
-    return (String) session.createQuery("SELECT i.code FROM entity.Item i ORDER BY i.code DESC ")
-        .setMaxResults(0).list().get(0);
+    List list = session.createQuery("SELECT i.code FROM entity.Item i ORDER BY i.code DESC ")
+        .setMaxResults(1).list();
+    return (list.size() > 0) ? (String) list.get(0) : null;
   }
 
   @Override

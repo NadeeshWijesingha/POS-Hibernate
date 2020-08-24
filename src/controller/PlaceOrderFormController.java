@@ -268,15 +268,12 @@ public class PlaceOrderFormController {
             return;
         }
 
-        boolean result = false;
+
         try {
-            result = orderBO.placeOrder(new OrderTM(lblId.getText(), LocalDate.now(), cmbCustomerId.getValue().getId(), cmbCustomerId.getValue().getName(),0),tblOrderDetails.getItems());
+            orderBO.placeOrder(new OrderTM(lblId.getText(), LocalDate.now(), cmbCustomerId.getValue().getId(), cmbCustomerId.getValue().getName(),0),tblOrderDetails.getItems());
         } catch (Exception e) {
             e.printStackTrace();
-        }
-        if (!result){
             new Alert(Alert.AlertType.ERROR, "Mudalali wade awul wage", ButtonType.OK).show();
-            return;
         }
 
         new Alert(Alert.AlertType.INFORMATION, "Mudalali wade goda", ButtonType.OK).showAndWait();

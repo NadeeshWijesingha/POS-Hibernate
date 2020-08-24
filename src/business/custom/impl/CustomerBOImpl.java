@@ -109,7 +109,24 @@ public class CustomerBOImpl implements CustomerBO {
   }
 
   public String getNewCustomerId() throws Exception {
-    String lastCustomerId = customerDAO.getLastCustomerId();
+    Session session = HibernateUtil.getSessionFactory().openSession();
+    customerDAO.setSession(session);
+    String lastCustomerId = null;
+    Transaction tx = null;
+    try {
+
+      tx = session.beginTransaction();
+
+      lastCustomerId = customerDAO.getLastCustomerId();
+
+      tx.commit();
+
+    } catch (Throwable t) {
+      tx.rollback();
+      throw t;
+    } finally {
+      session.close();
+    }
 
     if (lastCustomerId == null) {
       return "C001";

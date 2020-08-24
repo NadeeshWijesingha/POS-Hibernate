@@ -53,7 +53,24 @@ public class ItemBOImpl implements ItemBO {
   }
 
   public String getNewItemCode() throws Exception {
-    String lastItemCode = itemDAO.getLastItemCode();
+    Session session = HibernateUtil.getSessionFactory().openSession();
+    itemDAO.setSession(session);
+    String lastItemCode = null;
+    Transaction tx = null;
+    try {
+
+      tx = session.beginTransaction();
+      lastItemCode = itemDAO.getLastItemCode();
+      System.out.println("lastItemCode = " + lastItemCode);
+
+      tx.commit();
+
+    } catch (Throwable t) {
+      tx.rollback();
+      throw t;
+    } finally {
+      session.close();
+    }
 
     if (lastItemCode == null) {
       return "I001";

@@ -18,7 +18,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 
   @Override
   public String getLastCustomerId() throws Exception {
-    return (String) session.createNativeQuery("SELECT * FROM Customer ORDER BY id DESC LIMIT 1").uniqueResult();
+    return (String) session.createNativeQuery("SELECT id FROM Customer ORDER BY id DESC LIMIT 1").uniqueResult();
   }
 
   @Override
