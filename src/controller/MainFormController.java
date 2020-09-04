@@ -1,8 +1,4 @@
-package controller;/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+package controller;
 
 import java.io.IOException;
 import java.net.URL;
@@ -24,11 +20,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-/**
- * FXML Controller class
- *
- * @author ranjith-suranga
- */
+
 public class MainFormController implements Initializable { 
     
     @FXML
@@ -47,10 +39,6 @@ public class MainFormController implements Initializable {
     private Label lblDescription;
 
 
-
-    /**
-     * Initializes the controller class.
-     */
     public void initialize(URL url, ResourceBundle rb) {
         FadeTransition fadeIn = new FadeTransition(Duration.millis(2000), root);
         fadeIn.setFromValue(0.0);

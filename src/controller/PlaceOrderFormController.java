@@ -60,20 +60,16 @@ public class PlaceOrderFormController {
 
         readOnly = false;
 
-        // Basic initializations
         txtCustomerName.setEditable(false);
         txtQtyOnHand.setEditable(false);
         txtUnitPrice.setEditable(false);
         txtDescription.setEditable(false);
 
-        // Let's set the date
         LocalDate today = LocalDate.now();
         lblDate.setText(today.toString());
 
-        // Let's load all the customer ids
         loadAllCustomers();
 
-        // When user selects a customer id
         cmbCustomerId.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<CustomerTM>() {
             @Override
             public void changed(ObservableValue<? extends CustomerTM> observable, CustomerTM oldValue, CustomerTM newValue) {
@@ -85,10 +81,9 @@ public class PlaceOrderFormController {
             }
         });
 
-        // Let's load all the item codes
+
         loadAllItems();
 
-        // When user selects a item code
         cmbItemCode.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<ItemTM>() {
             @Override
             public void changed(ObservableValue<? extends ItemTM> observable, ItemTM oldValue, ItemTM newValue) {
@@ -108,7 +103,6 @@ public class PlaceOrderFormController {
             }
         });
 
-        // Let's map columns
         tblOrderDetails.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("code"));
         tblOrderDetails.getColumns().get(1).setCellValueFactory(new PropertyValueFactory<>("description"));
         tblOrderDetails.getColumns().get(2).setCellValueFactory(new PropertyValueFactory<>("qty"));
@@ -314,7 +308,7 @@ public class PlaceOrderFormController {
     }
 
     private void generateOrderId() {
-        // Generate a new id
+
         try {
             lblId.setText(orderBO.getNewOrderId());
         } catch (Exception e) {
@@ -329,7 +323,7 @@ public class PlaceOrderFormController {
             if (order.getId().equals(orderId)) {
                 lblDate.setText(order.getDate() + "");
 
-                // To select the customer
+
                 String customerId = order.getCustomerId();
                 for (CustomerTM customer : cmbCustomerId.getItems()) {
                     if (customer.getId().equals(customerId)) {
